@@ -1,0 +1,403 @@
+:root{
+  --primary:#e01f1d;
+  --primary-dark:#e01f1d;
+  --primary-light:#e01f1d;
+  --success:#10b981;
+  --warning:#f59e0b;
+  --danger:#ef4444;
+  --muted:#f3f4f6;
+  --card:#ffffff;
+  --text:#1f2937;
+  --text-light:#6b7280;
+  --soft:#f9fafb;
+  --border:#e5e7eb;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: var(--soft);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body.home-page {
+  background-image: url('/static/image/bsu_bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: #000;
+}
+
+html,body{
+  min-height:100vh;
+}
+
+.site-header{
+  background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color:#fff;
+  padding:24px 0;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.header-inner{
+  max-width:1200px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:0 24px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo{
+  width:64px;
+  height:64px;
+  border-radius:12px;
+  background:#fff;
+  padding:8px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.site-title {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 900;
+  font-size: 28px; /* adjust as needed */
+  letter-spacing: -0.5px; /* optional, adjust spacing */
+  margin-bottom: 4px;
+  line-height: 1.1;
+  text-transform: uppercase !important; /* THIS MAKES ALL LETTERS UPPERCASE */
+}
+
+.site-sub {
+  font-family: Arial;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-top: 0; /* remove extra space above subtitle */
+  line-height: 1.2; /* adjust for compactness */
+  font-style: oblique; /* makes the text slanted */
+}
+
+
+
+/* Removed header-actions styling - buttons now only on content pages */
+
+.container{
+  max-width:1200px;
+  margin:40px auto;
+  padding:32px;
+}
+
+#main-container.home-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.small{
+  font-size:13px;
+  color:var(--text-light);
+}
+
+.site-main {
+  flex: 1;
+  min-height: calc(100vh - 200px);
+}
+
+.site-main .container{
+  background:transparent;
+}
+
+h1, h2, h3, h4, h5, h6{
+  color:var(--text);
+  margin:0 0 16px 0;
+  font-weight:700;
+}
+
+h1{
+  font-size:32px;
+}
+
+h2{
+  font-size:28px;
+}
+
+h3{
+  font-size:24px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:28px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  margin-bottom:24px;
+  border:1px solid var(--border);
+  transition:box-shadow 0.3s ease;
+}
+
+.card:hover{
+  box-shadow:0 8px 28px rgba(0,0,0,0.12);
+}
+
+.center{
+  text-align:center;
+}
+
+.btn{
+  display:inline-block;
+  padding:12px 24px;
+  background:var(--primary);
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  font-size:15px;
+  transition:all 0.2s ease;
+  box-shadow:0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.btn:hover{
+  background:var(--primary-dark);
+  transform:translateY(-2px);
+  box-shadow:0 4px 16px rgba(37, 99, 235, 0.3);
+}
+
+.btn:active{
+  transform:translateY(0);
+}
+
+.btn-ghost{
+  background:transparent;
+  border:2px solid rgba(255,255,255,0.3);
+  color:#fff;
+  padding:10px 22px;
+  border-radius:10px;
+  box-shadow:none;
+}
+
+.btn-ghost:hover{
+  background:rgba(255,255,255,0.1);
+  box-shadow:none;
+}
+
+.btn.secondary{
+  background:#6b7280;
+}
+
+.btn.secondary:hover{
+  background:#4b5563;
+}
+
+.btn.success{
+  background:var(--success);
+}
+
+.btn.success:hover{
+  background:#059669;
+}
+
+.btn.danger{
+  background:var(--danger);
+}
+
+.btn.danger:hover{
+  background:#dc2626;
+}
+
+label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:600;
+  color:var(--text);
+  font-size:15px;
+}
+
+input, select, textarea{
+  padding:12px 16px;
+  border-radius:10px;
+  border:2px solid var(--border);
+  width:100%;
+  margin-bottom:16px;
+  font-family:inherit;
+  font-size:15px;
+  transition:all 0.2s ease;
+  background:var(--soft);
+}
+
+input:focus, select:focus, textarea:focus{
+  outline:none;
+  border-color:var(--primary);
+  background:var(--card);
+  box-shadow:0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+textarea{
+  resize:vertical;
+  min-height:120px;
+}
+
+.grid{
+  display:grid;
+able{
+  width:100%;
+  border-collapse:collapse;
+  margin-bottom:24px;
+}
+
+thead{
+  background:var(--muted);
+  border-bottom:2px solid var(--border);
+}
+
+th{
+  padding:16px;
+  text-align:left;
+  font-weight:700;
+  color:var(--text);
+  font-size:14px;
+}
+
+td{
+  padding:16px;
+  border-bottom:1px solid var(--border);
+  color:var(--text);
+}
+
+tr:hover{
+  background:var(--soft);
+}
+
+.footer{
+  margin-top:auto;
+  padding:32px;
+  text-align:center;
+  color:var(--text-light);
+  background:var(--muted);
+  border-top:1px solid var(--border);
+}
+
+.site-footer{
+  margin-top:auto;
+  padding:32px;
+  text-align:center;
+  color:var(--text-light);
+  background:var(--muted);
+  border-top:1px solid var(--border);
+}
+
+.form-group{
+  margin-bottom:24px;
+}
+
+.alert{
+  padding:16px 20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  border-left:4px solid;
+}
+
+.alert-success{
+  background:#d1fae5;
+  border-color:var(--success);
+  color:#065f46;
+}
+
+.alert-error{
+  background:#fee2e2;
+  border-color:var(--danger);
+  color:#7f1d1d;
+}
+
+.alert-warning{
+  background:#fef3c7;
+  border-color:var(--warning);
+  color:#78350f;
+}
+
+@media (max-width:900px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+  .header-inner{
+    padding:0 16px;
+  }
+  .container{
+    padding:20px;
+    margin:24px auto;
+  }
+  .card{
+    padding:20px;
+  }
+  h1{
+    font-size:28px;
+  }
+  h2{
+    font-size:24px;
+  }
+}
+
+@media (max-width:900px){
+  .header-inner{
+    padding:0 16px;
+  }
+  .container{
+    padding:20px;
+    margin:24px auto;
+  }
+  .card{
+    padding:20px;
+  }
+  h1{
+    font-size:28px;
+  }
+  h2{
+    font-size:24px;
+  }
+  h3{
+    font-size:20px;
+  }
+}
+
+@media (max-width:600px){
+  .container{
+    padding:16px;
+    margin:16px auto;
+  }
+  h1{
+    font-size:24px;
+  }
+  h2{
+    font-size:20px;
+  }
+  h3{
+    font-size:18px;
+  }
+  .card{
+    padding:16px;
+  }
+  .btn{
+    padding:10px 20px;
+    font-size:14px;
+  }
+}}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
+{% block content %}
+  <div class="card" style="max-width:600px; margin:0 auto">
+    <h2 class="center" style="margin-bottom:28px">Create Your Profile</h2>
+    <form id="signupForm" method="post">
+      <div class="grid">
+        <div>
+          <div class="form-group">
+            <label>Full Name</label>
+            <input name="full_name" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group">
+            <label>SR Code</label>
+            <input name="sr_code" placeholder="Enter your SR code" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input name="email" type="email" placeholder="your.email@student.bsu.edu">
+          </div>
+          <div class="form-group">
+            <label>Program</label>
+            <select name="program" required>
+              <option value="">Select your program...</option>
+              {% for p in programs %}
+                <option value="{{ p }}">{{ p }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Section</label>
+            <select name="section" required>
+              <option value="">Select your section...</option>
+              {% for s in sections %}
+                <option value="{{ s }}">{{ s }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div>
+          <div class="form-group">
+            <label>Photo</label>
+            <div class="video-wrap" style="min-height:280px">
+              <video id="video" width="320" height="240" autoplay playsinline style="width:100%; border-radius:8px"></video>
+            </div>
+            <button type="button" class="btn success" id="capture" style="width:100%; margin-top:12px">📸 Capture Photo</button>
+            <input type="hidden" name="image" id="imageField">
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px; display:flex; gap:12px">
+        <button class="btn" type="submit" style="flex:1">Sign Up</button>
+        <a href="{{ url_for('student_select') }}" class="btn secondary" style="flex:1; text-align:center">Cancel</a>
+      </div>
+    </form>
+  </div>
+  <script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+{% endblock %}

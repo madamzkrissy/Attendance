@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/student-scan.css') }}">
+{% endblock %}
+{% block content %}
+  <div class="card">
+    <h2 class="center" style="margin-bottom:8px">📸 Face Recognition</h2>
+    <p class="center small" style="margin-bottom:28px">Program: <strong>{{ program }}</strong> | Section: <strong>{{ section }}</strong></p>
+
+    {% if face_enabled %}
+    <div class="grid">
+      <div>
+        <div class="video-wrap">
+          <video id="video" width="640" height="480" autoplay playsinline style="width:100%; display:block"></video>
+        </div>
+        <div style="margin-top:20px; display:flex; gap:12px">
+          <button class="btn success" id="scanBtn" style="flex:1">🔍 Scan Face</button>
+          <button class="btn secondary" id="retryBtn" style="flex:1">↻ Reset</button>
+        </div>
+      </div>
+      <div>
+        <div class="status-box">
+          <div id="status">Ready to scan...</div>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+    {% else %}
+    <div style="text-align:center; padding:18px">
+      <p style="color:#6b7280">Face recognition is not available on this server.</p>
+      <p style="color:#6b7280">You can still manually check-in by entering your Student Code.</p>
+      <div style="max-width:360px;margin:12px auto;">
+        <input id="manualSr" placeholder="Enter student code" style="width:100%; padding:12px; margin-bottom:8px" />
+        <button id="manualBtn" class="btn" style="width:100%">Check In</button>
+        <div id="manualStatus" style="margin-top:12px; color:#374151"></div>
+      </div>
+    </div>
+    <script>
+      document.getElementById('manualBtn').addEventListener('click', function(){
+        const sr = document.getElementById('manualSr').value.trim();
+        if(!sr){
+          document.getElementById('manualStatus').textContent = 'Please enter a student code.';
+          return;
+        }
+        fetch('{{ url_for('api_scan') }}', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({manual_sr_code: sr})
+        }).then(r=>r.json()).then(j=>{
+          if(j.ok){
+            const res = j.results[0];
+            document.getElementById('manualStatus').textContent = `Checked in: ${res.name || res.sr_code} (${res.status})`;
+          } else {
+            document.getElementById('manualStatus').textContent = 'Error: ' + (j.error || 'unknown');
+          }
+        }).catch(err=>{
+          document.getElementById('manualStatus').textContent = 'Request failed';
+        });
+      });
+    </script>
+    {% endif %}
+  </div>
+{% endblock %}

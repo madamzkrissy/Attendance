@@ -1,0 +1,83 @@
+/* Teacher Reports Page Styles */
+
+.reports-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 32px;
+}
+
+.reports-filter {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.filter-group {
+  margin-bottom: 0;
+}
+
+.reports-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.reports-table thead {
+  background: var(--muted);
+  border-bottom: 2px solid var(--border);
+}
+
+.reports-table th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.reports-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.reports-table tr:hover {
+  background: var(--soft);
+}
+
+.report-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.report-actions .btn {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .filter-row {
+    grid-template-columns: 1fr;
+  }
+
+  .reports-table {
+    font-size: 14px;
+  }
+
+  .reports-table th,
+  .reports-table td {
+    padding: 12px;
+  }
+}

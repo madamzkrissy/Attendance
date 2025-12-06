@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
+{% block content %}
+  <div class="card" style="max-width:500px; margin:0 auto">
+    <h2 style="text-align:center; margin-bottom:28px">Select Program & Section</h2>
+    <form method="post">
+      <div class="form-group">
+        <label>Program</label>
+        <select id="program" name="program" required>
+          <option value="">Choose a program...</option>
+          {% for p in programs %}
+            <option value="{{ p }}">{{ p }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Section</label>
+        <select id="section" name="section" required disabled>
+          <option value="">Choose a section...</option>
+        </select>
+      </div>
+      <button class="btn" type="submit" style="width:100%; padding:14px; font-size:16px">Open Camera & Scan</button>
+    </form>
+    <div style="margin-top:28px; padding-top:28px; border-top:1px solid #e5e7eb">
+      <p style="text-align:center; color:#6b7280; margin-bottom:16px">New here?</p>
+      <div style="display:flex; gap:12px">
+        <a href="{{ url_for('student_signup') }}" class="btn secondary" style="flex:1; text-align:center">Sign Up</a>
+        <a href="{{ url_for('student_update') }}" class="btn secondary" style="flex:1; text-align:center">Update Photo</a>
+      </div>
+    </div>
+  </div>
+
+  {% block extra_js %}
+  <script>
+    // Safely pass the 'sections' dictionary from Flask to JavaScript (default to empty object)
+    const sections = {{ sections | default({}) | tojson | safe }};
+
+    const programSelect = document.getElementById('program');
+    const sectionSelect = document.getElementById('section');
+
+    // Function to update sections based on selected program
+    programSelect.addEventListener('change', function() {
+      const selectedProgram = programSelect.value;
+      let availableSections = sections[selectedProgram] || [];
+
+      // If server provided a string instead of an array (e.g. "1-A', '1-B"), try to coerce it
+      if (typeof availableSections === 'string') {
+        try {
+          // If it's a JSON array string like '["1-A","1-B"]'
+          availableSections = JSON.parse(availableSections);
+        } catch (e) {
+          // Otherwise split on commas and strip surrounding quotes/whitespace
+          availableSections = availableSections.split(',').map(function(s) {
+            return s.replace(/^\s*['"]?|['"]?\s*$/g, '').trim();
+          }).filter(function(s){ return s.length > 0; });
+        }
+      }
+
+      // Clear current sections
+      sectionSelect.innerHTML = '<option value="">Choose a section...</option>';
+
+      // Enable section select and populate options based on selected program
+      if (Array.isArray(availableSections) && availableSections.length > 0) {
+        sectionSelect.disabled = false;
+        availableSections.forEach(function(section) {
+          const option = document.createElement('option');
+          option.value = section;
+          option.textContent = section;
+          sectionSelect.appendChild(option);
+        });
+      } else {
+        sectionSelect.disabled = true;
+      }
+    });
+  </script>
+  {% endblock %}
+{% endblock %}

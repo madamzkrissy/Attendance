@@ -1,0 +1,86 @@
+/* Select/Choose Page Styles */
+
+.select-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 32px;
+}
+
+.select-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.select-header h1 {
+  margin-bottom: 12px;
+}
+
+.select-header p {
+  color: var(--text-light);
+  font-size: 16px;
+}
+
+.select-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.select-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 32px 24px;
+  border: 2px solid var(--border);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: block;
+}
+
+.select-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.15);
+  transform: translateY(-4px);
+}
+
+.select-card-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.select-card h3 {
+  margin: 0 0 12px 0;
+  color: var(--text);
+}
+
+.select-card p {
+  color: var(--text-light);
+  font-size: 14px;
+  margin: 0;
+}
+
+.select-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+  .select-container {
+    padding: 20px;
+  }
+
+  .select-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .select-actions {
+    flex-direction: column;
+  }
+
+  .select-actions .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Out</title>
+    <!-- Include necessary CSS/JS -->
+</head>
+<body>
+    <h1>Student Check Out</h1>
+    <div>
+        <a href="{{ url_for('student_scan_checkout') }}">Face Recognition Checkout</a>
+    </div>
+    <div>
+        <form method="POST">
+            <input type="text" name="sr_code" placeholder="Enter SR Code" required>
+            <button type="submit">Manual Checkout</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Out with Face Recognition</title>
+    <!-- Similar to student_scan.html but for checkout -->
+</head>
+<body>
+    <h1>Check Out using Face Recognition</h1>
+    <!-- Camera interface -->
+    <!-- JavaScript to capture and send to /api/checkout -->
+</body>
+</html>

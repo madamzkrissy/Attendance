@@ -1,0 +1,62 @@
+/* Student Scan Page Styles */
+
+.student-scan-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 32px;
+}
+
+.scan-status {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: 12px;
+  padding: 32px;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #fff;
+  font-size: 18px;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.scan-info {
+  background: var(--muted);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.camera-container {
+  background: var(--muted);
+  border-radius: 12px;
+  padding: 12px;
+  border: 2px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.camera-container video {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.scan-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .student-scan-container {
+    padding: 20px;
+  }
+
+  .scan-buttons {
+    grid-template-columns: 1fr;
+  }
+}

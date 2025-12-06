@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Attendance Checker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Page-Specific Styles -->
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <img src="https://iconape.com/wp-content/files/ff/195932/png/Batangas_State_University-logo.png" alt="logo" class="logo">
+          <div>
+            <div class="site-title">BATANGAS STATE UNIVERSITY</div>
+            <div class="site-sub">The National Engineering University</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="site-main" id="site-main">
+      <div class="container" id="main-container">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container small">© {{ "now"|replace('now', '') }} BatStateU — Attendance Checker</div>
+    </footer>
+  </body>
+</html>

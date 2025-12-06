@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/teacher-reports.css') }}">
+{% endblock %}
+{% block content %}
+  <h2 style="margin-bottom:8px">📈 Attendance Reports</h2>
+  <p class="small" style="margin-bottom:28px">View attendance logs and student status history.</p>
+  <div class="card">
+    {% if logs|length == 0 %}
+      <p style="text-align:center; color:#6b7280; padding:40px">No attendance records yet.</p>
+    {% else %}
+      <table>
+        <thead>
+          <tr>
+            <th>SR Code</th>
+            <th>Student Name</th>
+            <th>Program</th>
+            <th>Section</th>
+            <th>Timestamp</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for r in logs %}
+          <tr>
+            <td><strong>{{ r['sr_code'] }}</strong></td>
+            <td>{{ r['full_name'] }}</td>
+            <td>{{ r['program'] }}</td>
+            <td>{{ r['section'] }}</td>
+            <td style="font-size:13px">{{ r['timestamp'][:19] }}</td>
+            <td>
+              {% if r['status'] == 'Present' %}
+                <span style="display:inline-block; background:#d1fae5; color:#065f46; padding:4px 12px; border-radius:6px; font-size:13px; font-weight:600\">✓ {{ r['status'] }}</span>
+              {% elif r['status'] == 'Late' %}
+                <span style=\"display:inline-block; background:#fef3c7; color:#92400e; padding:4px 12px; border-radius:6px; font-size:13px; font-weight:600\">⏰ {{ r['status'] }}</span>
+              {% else %}
+                <span style=\"display:inline-block; background:#fee2e2; color:#7f1d1d; padding:4px 12px; border-radius:6px; font-size:13px; font-weight:600\">? {{ r['status'] }}</span>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </div>
+  <div style="margin-top:28px">
+    <a href="{{ url_for('teacher_home') }}" class="btn secondary">← Back to Portal</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+{% block content %}
+<div class="home">
+  <div class="card center background-div" >
+    <h2>Welcome to Attendance System</h2>
+    <p style="font-size:16px; color:#6b7280; margin:20px 0">Batangas State University</p>
+    <div class="center">
+      <p style="color:#6b7280; margin-bottom:40px">Choose your role to access the system</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:500px; margin:0 auto">
+        <div class="card" style="text-align:center; padding:32px 20px">
+          <div style="font-size:48px; margin-bottom:16px">🎓</div>
+          <h3 style="margin-bottom:12px">Student</h3>
+          <p style="color:#6b7280; margin-bottom:20px; font-size:14px">Mark your attendance</p>
+          <a class="btn" style="width:100%; text-align:center" href="{{ url_for('student_select') }}">Enter</a>
+        </div>
+        <div class="card" style="text-align:center; padding:32px 20px">
+          <div style="font-size:48px; margin-bottom:16px">👨‍🏫</div>
+          <h3 style="margin-bottom:12px">Teacher</h3>
+          <p style="color:#6b7280; margin-bottom:20px; font-size:14px">Manage attendance</p>
+          <a class="btn" style="width:100%; text-align:center" href="{{ url_for('teacher_home') }}">Enter</a>
+        </div>
+      </div>
+    </div>
+    <a class="btn" href="{{ url_for('select') }}" style="padding:14px 32px; font-size:16px">Continue As Guest</a>
+  </div>
+  </div>
+{% endblock %}
+
+<script>
+  document.body.classList.add('home-page');
+  document.getElementById('main-container').classList.add('home');
+</script>

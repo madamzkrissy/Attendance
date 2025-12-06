@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
+{% block content %}
+  <div class="card" style="max-width:500px; margin:0 auto">
+    <h2 class="center" style="margin-bottom:28px">📸 Update Your Photo</h2>
+    <form id="updateForm" method="post">
+      <div class="form-group">
+        <label>SR Code</label>
+        <input name="sr_code" placeholder="Enter your SR code" required>
+      </div>
+      <div class="form-group">
+        <label>Take a New Photo</label>
+        <div class="video-wrap" style="min-height:280px">
+          <video id="video" width="320" height="240" autoplay playsinline style="width:100%; border-radius:8px"></video>
+        </div>
+        <button type="button" class="btn success" id="capture" style="width:100%; margin-top:12px">📸 Capture Photo</button>
+        <input type="hidden" name="image" id="imageField">
+      </div>
+      <div style="display:flex; gap:12px; margin-top:24px">
+        <button class="btn" type="submit" style="flex:1">Update Photo</button>
+        <a href="{{ url_for('student_select') }}" class="btn secondary" style="flex:1; text-align:center">Cancel</a>
+      </div>
+    </form>
+  </div>
+  <script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/teacher-dashboard.css') }}">
+{% endblock %}
+{% block content %}
+  <h2 style="margin-bottom:8px">📊 Manage Students</h2>
+  <p class="small" style="margin-bottom:28px">Edit student details or remove a student from the system.</p>
+  <div class="card">
+    {% if students|length == 0 %}
+      <p style="text-align:center; color:#6b7280">No students enrolled yet.</p>
+    {% else %}
+      <table>
+        <thead>
+          <tr>
+            <th>SR Code</th>
+            <th>Name</th>
+            <th>Program</th>
+            <th>Section</th>
+            <th style="width:180px">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for s in students %}
+          <tr>
+            <td><strong>{{ s['sr_code'] }}</strong></td>
+            <td>{{ s['full_name'] }}</td>
+            <td>{{ s['program'] }}</td>
+            <td>{{ s['section'] }}</td>
+            <td style="display:flex; gap:8px">
+              <a class="btn" href="{{ url_for('teacher_student_edit', sr_code=s['sr_code']) }}" style="padding:8px 12px; font-size:13px">✏️ Edit</a>
+              <form method="post" action="{{ url_for('teacher_student_delete', sr_code=s['sr_code']) }}" style="display:inline" onsubmit="return confirm('Delete this student?');">
+                <button class="btn danger" type="submit" style="padding:8px 12px; font-size:13px">🗑️ Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+  </div>
+  <div style="margin-top:28px">
+    <a href="{{ url_for('teacher_home') }}" class="btn secondary">← Back to Portal</a>
+  </div>
+{% endblock %}

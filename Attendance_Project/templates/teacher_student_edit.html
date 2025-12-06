@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
+{% block content %}
+  <div class="card" style="max-width:500px; margin:0 auto">
+    <h2 class="center" style="margin-bottom:28px">✏️ Edit Student</h2>
+    <form method="post">
+      <div class="form-group">
+        <label>SR Code</label>
+        <input type="text" value="{{ student['sr_code'] }}" disabled style="background:#f3f4f6; cursor:not-allowed">
+      </div>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input name="full_name" value="{{ student['full_name'] }}" required>
+      </div>
+      <div class="form-group">
+        <label>Program</label>
+        <input name="program" value="{{ student['program'] }}" required>
+      </div>
+      <div class="form-group">
+        <label>Section</label>
+        <input name="section" value="{{ student['section'] }}" required>
+      </div>
+      <div style="display:flex; gap:12px; margin-top:28px">
+        <button class="btn" type="submit" style="flex:1">💾 Save Changes</button>
+        <a class="btn secondary" href="{{ url_for('teacher_dashboard') }}" style="flex:1; text-align:center">Cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

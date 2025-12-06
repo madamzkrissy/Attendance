@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/select.css') }}">
+{% endblock %}
+{% block content %}
+  <div style="text-align:center; margin-top:60px">
+    <div style="margin-bottom:40px">
+      <img src="https://via.placeholder.com/120x120?text=BSU" alt="banner" style="width:120px; height:auto; border-radius:20px; box-shadow:0 8px 24px rgba(0,0,0,0.15)">
+    </div>
+    <h1 style="font-size:40px; margin-bottom:12px">Welcome Back!</h1>
+    <p style="font-size:18px; color:#6b7280; margin-bottom:40px">Efficient Attendance Management System</p>
+    <a class="btn" href="{{ url_for('home') }}" style="padding:14px 32px; font-size:16px">Get Started</a>
+  </div>
+{% endblock %}
